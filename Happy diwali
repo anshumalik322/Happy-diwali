@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Diwali ✨</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #542044, #160b22 70%);
+  color: #fff1cf;
+  font-family: Georgia, serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(#fff 1px, transparent 1px),
+    radial-gradient(#ffd778 1px, transparent 1px);
+  background-size: 70px 70px, 110px 110px;
+  background-position: 0 0, 35px 35px;
+  opacity: .3;
+}
+
+main {
+  position: relative;
+  padding: 35px 16px;
+  max-width: 750px;
+  margin: auto;
+}
+
+.small-title {
+  color: #ffd778;
+  letter-spacing: 5px;
+  font: 12px Arial;
+  margin-top: 20px;
+}
+
+h1 {
+  color: #ffd778;
+  font-size: clamp(42px, 10vw, 75px);
+  margin: 20px 0;
+  text-shadow: 0 0 25px #ffad42;
+}
+
+.subtitle {
+  font: 15px/1.8 Arial;
+  color: #f7dfc1;
+  max-width: 500px;
+  margin: auto;
+}
+
+.card {
+  margin: 35px auto;
+  padding: 35px 20px;
+  border: 1px solid #ffd778;
+  border-radius: 25px;
+  background: #ffffff0d;
+  box-shadow: 0 10px 50px #0007;
+}
+
+.label {
+  color: #ffd778;
+  font: 12px Arial;
+  letter-spacing: 3px;
+}
+
+#receiver {
+  font-size: 35px;
+  margin: 15px 0;
+  color: #fff0c9;
+  overflow-wrap: anywhere;
+}
+
+.gift {
+  font-size: 90px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 20px;
+  animation: float 2s infinite ease-in-out;
+  background: none;
+  border: none;
+}
+
+@keyframes float {
+  50% { transform: translateY(-12px) rotate(4deg); }
+}
+
+button {
+  background: linear-gradient(120deg, #ffe7a4, #e8a944);
+  color: #301321;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 7px;
+}
+
+button:hover {
+  transform: scale(1.04);
+}
+
+.message {
+  font: 15px/1.9 Arial;
+  margin: 20px auto;
+  max-width: 460px;
+  color: #ffe9d2;
+  white-space: pre-wrap;
+}
+
+.sender {
+  color: #ffd778;
+  font-size: 20px;
+  margin: 15px;
+}
+
+.form {
+  padding: 22px;
+  margin: 25px auto;
+  background: #ffffff0b;
+  border: 1px solid #ffffff30;
+  border-radius: 18px;
+}
+
+.form h2 {
+  color: #ffd778;
+  margin-bottom: 18px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 13px;
+  margin: 7px 0;
+  border-radius: 9px;
+  border: 1px solid #ffd77880;
+  background: #1c1027;
+  color: white;
+  font: 14px Arial;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+#status {
+  overflow-wrap: anywhere;
+  font: 13px/1.6 Arial;
+  margin-top: 12px;
+  color: #ffd778;
+}
+
+.diyas {
+  font-size: 38px;
+  margin: 25px;
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  to { filter: drop-shadow(0 0 15px orange); }
+}
+
+footer {
+  color: #c9a9bb;
+  font: 11px Arial;
+  letter-spacing: 3px;
+  margin: 35px 0;
+}
+
+.spark {
+  position: fixed;
+  pointer-events: none;
+  z-index: 5;
+  animation: burst 1.3s forwards;
+}
+
+@keyframes burst {
+  to {
+    transform: translate(var(--x), var(--y)) scale(1.5);
+    opacity: 0;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<main>
+
+<p class="small-title">A LITTLE FESTIVAL MAGIC</p>
+
+<h1>Happy Diwali</h1>
+
+<p class="subtitle">
+May your home shine with happiness,
+your heart glow with love,
+and your life sparkle with success.
+</p>
+
+<div class="card">
+
+<p class="label">A SPECIAL WISH FOR</p>
+
+<h2 id="receiver">Someone Special</h2>
+
+<button class="gift" id="gift">🎁</button>
+
+<p id="hint">Tap the gift to open your surprise ✨</p>
+
+<div id="surprise" hidden>
+
+<h2 style="color:#ffd778;margin:20px">
+✨ Surprise! ✨
+</h2>
+
+<p class="message" id="message"></p>
+
+<p class="sender">
+With love,<br>
+<span id="sender">A Friend</span>
+</p>
+
+</div>
+
+<button id="open">Open Your Gift ✨</button>
+
+<button id="share">Share This Wish ↗</button>
+
+</div>
+
+<div class="form">
+
+<h2>Create Your Own Greeting</h2>
+
+<input id="fromInput" placeholder="Your name">
+
+<input id="toInput" placeholder="Receiver's name">
+
+<textarea id="msgInput"
+placeholder="Write your Diwali message"></textarea>
+
+<button id="create">
+Create My Greeting Link
+</button>
+
+<p id="status"></p>
+
+</div>
+
+<div class="diyas">🪔 🪔 🪔</div>
+
+<footer>
+MADE WITH LIGHT • SHARED WITH LOVE
+</footer>
+
+</main>
+
+<script>
+
+const defaultMessage =
+"Wishing you a Diwali filled with happiness, peace, success and beautiful memories. May every diya bring hope and every sparkle bring joy!";
+
+const params = new URLSearchParams(location.search);
+
+function getValue(key, fallback) {
+  return (params.get(key) || "").trim() || fallback;
+}
+
+function loadGreeting() {
+  document.getElementById("receiver").textContent =
+    getValue("to", "Someone Special");
+
+  document.getElementById("sender").textContent =
+    getValue("from", "A Friend");
+
+  document.getElementById("message").textContent =
+    getValue("msg", defaultMessage);
+}
+
+function fireworks() {
+  const symbols = ["✨", "✦", "💛", "🎆", "❀"];
+
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement("span");
+
+    s.className = "spark";
+    s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = Math.random() * 80 + "vh";
+
+    s.style.setProperty("--x",
+      (Math.random() * 250 - 125) + "px");
+
+    s.style.setProperty("--y",
+      (Math.random() * -250 - 30) + "px");
+
+    s.style.fontSize = "20px";
+
+    document.body.appendChild(s);
+
+    setTimeout(() => s.remove(), 1400);
+  }
+}
+
+function openGift() {
+  document.getElementById("surprise").hidden = false;
+
+  document.getElementById("hint").textContent =
+    "A special wish, made just for you 💛";
+
+  document.getElementById("open").textContent =
+    "Gift Opened ✓";
+
+  fireworks();
+}
+
+document.getElementById("gift")
+  .addEventListener("click", openGift);
+
+document.getElementById("open")
+  .addEventListener("click", openGift);
+
+document.getElementById("create")
+  .addEventListener("click", async () => {
+
+    const from =
+      document.getElementById("fromInput").value.trim()
+      || "A Friend";
+
+    const to =
+      document.getElementById("toInput").value.trim()
+      || "Someone Special";
+
+    const msg =
+      document.getElementById("msgInput").value.trim()
+      || defaultMessage;
+
+    const url = new URL(location.href);
+
+    url.search = "";
+
+    url.searchParams.set("from", from);
+    url.searchParams.set("to", to);
+    url.searchParams.set("msg", msg);
+
+    const link = url.toString();
+
+    try {
+      await navigator.clipboard.writeText(link);
+
+      document.getElementById("status").textContent =
+        "Your greeting link has been copied! Share it with friends.";
+
+    } catch (error) {
+
+      document.getElementById("status").textContent =
+        "Copy this greeting link: " + link;
+
+    }
+
+    document.getElementById("receiver").textContent = to;
+    document.getElementById("sender").textContent = from;
+    document.getElementById("message").textContent = msg;
+
+    document.getElementById("surprise").hidden = true;
+    document.getElementById("hint").textContent =
+      "Tap the gift to open your surprise ✨";
+  });
+
+document.getElementById("share")
+  .addEventListener("click", async () => {
+
+    const data = {
+      title: "Happy Diwali ✨",
+      text: "I made a special Diwali wish for you!",
+      url: location.href
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(data);
+      } catch (error) {}
+    } else {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        alert("Link copied!");
+      } catch (error) {
+        alert("Copy the website address from your browser.");
+      }
+    }
+  });
+
+loadGreeting();
+
+</script>
+
+</body>
+</html>
